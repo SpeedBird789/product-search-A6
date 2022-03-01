@@ -1,5 +1,6 @@
 const allPhones = () => {
-    const searchValue = document.getElementById("search-box").value; 
+    const searchField = document.getElementById("search-box");
+    const searchValue = searchField.value;  
    
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
     // console.log(url);
@@ -9,40 +10,20 @@ const allPhones = () => {
 };
 
 const showPhoneDetails = (phones) => {
-    for (const phone of phones){
-    const parent = document.getElementById("phone-container");
-
-    const div = document.createElement('div');
-
-    div.classList.add("row");
-    div.innerHTML = `
-    <div class="col-md-4">
-        <div class="card border p-5">
-            <div class="pro-pic">
-              <img class="w-50" src="${phone.image}" alt="">
-            </div>
-            <h2>Name: ${phone.phone_name} </h2>
-            <h3>Brand: ${phone.brand} </h3>
-            <div class="allbutton">
-              <button class="btn btn-success">Explore</button>
-            </div>
-          </div>
-    </div>
-</div>`; 
-
-
-//     div.innerHTML = `<div class="card border p-5">
-//     <div class="pro-pic">
-//       <img class="w-50" src="${phone.image}" alt="">
-//     </div>
-//     <h2>Name: ${phone.phone_name} </h2>
-//     <h3>Brand: ${phone.brand} </h3>
-//     <div class="allbutton">
-//       <button class="btn btn-success">Explore</button>
-//     </div>
-//   </div>`;
+    const searchResult = document.getElementById("search-result");
     
-  parent.appendChild(div);
-  console.log(phone);
+    for (const phone of phones){
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            </div>
+      </div>`;
+      searchResult.appendChild(div);
     }
+
 };
