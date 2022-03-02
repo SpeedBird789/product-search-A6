@@ -14,11 +14,28 @@
 </div> -->
 
 
-<div class="card w-75 ms-5">
+<!-- <div class="card w-75 ms-5">
   <img src="${phone.image}" class="card-img-top w-50" alt="...">
   <div class="card-body">
   <h3 class="card-title">${phone.phone_name}</h5>
   <h4 class="card-text">${phone.brand}</h4>
   <button id="explore-btn" class="primary">Explore</button>
   </div>
+</div> -->
+
+<div>
+  <img src="${info.image}" alt="">
+  <h4>${info.releaseDate}</h4>
+  <h4><span>Storage: </span>${info.mainFeatures.storage}</h4>
+  <h4><span>Chipset: </span>${info.mainFeatures.chipSet}</h4>
+  <h4><span>Memory: </span>${info.mainFeatures.memory}</h4>
+  <h4><span>Display: </span>${info.mainFeatures.displaySize}</h4>
+  <h4><span>Sensors: </span>${info.mainFeatures.sensors}</h4>
+  <h3>Others:</h3>
+  <h4>${info.others.WLAN}</h4>
+  <h4>${info.others.Bluetooth}</h4>
+  <h4>${info.others.GPS}</h4>
+  <h4>${info.others.NFC}</h4>
+  <h4>${info.others.Radio}</h4>
+  <h4>${info.others.USB}</h4>
 </div>
