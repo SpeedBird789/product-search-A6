@@ -6,12 +6,11 @@ const allPhones = () => {
     // console.log(url);
     fetch(url)
     .then(response => response.json())
-    .then((data) => showPhoneDetails(data.data));
+    .then((data) => showPhoneDetails(data.data.slice(0,20)));
 };
 
 const showPhoneDetails = (phones) => {
     const searchResult = document.getElementById("search-result");
-    
     for (const phone of phones){
         const div = document.createElement('div');
         div.classList.add('col');
@@ -21,7 +20,7 @@ const showPhoneDetails = (phones) => {
             <div class="card-body">
             <h3 class="card-title">${phone.phone_name}</h5>
             <h4 class="card-text">${phone.brand}</h4>
-            <button onclick="loadPhoneDetail" id="explore-btn" class="bg-success text-white font-weight-bold rounded"> Explore </button>
+            <button onclick="loadPhoneDetail('${phone.slug}')" id="explore-btn" class="bg-success text-white font-weight-bold rounded"> Details </button>
             </div>
       </div>`;
       searchResult.appendChild(div);
@@ -29,7 +28,13 @@ const showPhoneDetails = (phones) => {
 
 }
 
-const loadPhoneDetail = phoneId =>{
-    console.log(phoneId);
+const loadPhoneDetail = (phoneId) =>{
+    const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+    fetch(url)
+    .then(response => response.json())
+    .then(data=>setDetails(data.data));
 }
 
+const setDetails = (info) => {
+    console.log(info);
+}
