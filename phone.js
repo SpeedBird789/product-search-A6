@@ -2,19 +2,27 @@ const allPhones = () => {
     // Obtaining searchbox value
     const searchField = document.getElementById("search-box");
     const searchValue = searchField.value;  
+
+    // Error Handling 
+    if (searchField.value<0){
+        alert('kindly enter a valid request');
+    }
    
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchValue}`;
     fetch(url)
     .then(response => response.json())
     .then((data) => showPhoneDetails(data.data.slice(0,20)));
+    
 };
 
 // Looping through all the phones and showing image, name, brand name
 const showPhoneDetails = (phones) => {
+
     const searchResult = document.getElementById("search-result");
 
     phones.forEach(phone => {
         const div = document.createElement('div');
+        
         div.classList.add('col');
         div.innerHTML = `
         <div class="card w-75">
@@ -37,6 +45,7 @@ const loadPhoneDetail = (phoneId) =>{
     fetch(url)
     .then(response => response.json())
     .then(data=>setDetails(data.data));
+     window.scrollTo(0,0);
 }
 
 // Adding additional details upon clicking the button
@@ -55,12 +64,12 @@ const setDetails = (info) => {
   <h5><span>Sensors: </span>${info.mainFeatures.sensors}</h4>
   
   <h3>Others:</h3>
-  <h5><span>WLAN: </span>${info.others.WLAN}</h4>
-  <h5><span>Bluetooth: </span>${info.others.Bluetooth}</h4>
-  <h5><span>GPS: </span>${info.others.GPS}</h4>
-  <h5><span>NFC: </span>${info.others.NFC}</h4>
-  <h5><span>Radio: </span>${info.others.Radio}</h4>
-  <h5><span>USB: </span>${info.others.USB}</h4>
+  <h5><span>WLAN: </span>${info.others.WLAN ? info.others.WLAN : 'No data found....'}</h4>
+  <h5><span>Bluetooth: </span>${info.others.Bluetooth ? info.others.Bluetooth : 'No data found....'}</h4>
+  <h5><span>GPS: </span>${info.others.GPS ? info.others.GPS : 'No data found....'}</h4>
+  <h5><span>NFC: </span>${info.others.NFC ? info.others.NFC : 'No data found....'}</h4>
+  <h5><span>Radio: </span>${info.others.Radio ? info.others.Radio : 'No data found....'}</h4>
+  <h5><span>USB: </span>${info.others.USB ? info.others.USB : 'No data found....'}</h4>
   </div>
     `;
    
